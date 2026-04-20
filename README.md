@@ -13,6 +13,8 @@ A curated list of structured, machine-readable data feeds designed for ingestion
 
 Every entry has been verified to return a parseable feed. No paywalled APIs. No feeds that require authentication to read. If a feed goes dead, open an issue.
 
+**Last verified: 2026-04-16.** A random sample of 16 URLs across every section was checked — 15 returned 200, 1 was removed (`api.gitterapp.com`, which had been serving an unofficial GitHub Trending JSON API; see [CHANGELOG.md](CHANGELOG.md)). The next re-verification is due on or before 2026-07-16 (90-day window). If you spot a dead feed between now and then, please open an issue.
+
 ## Contents
 
 - [AI Trend Intelligence](#ai-trend-intelligence)
@@ -97,7 +99,7 @@ curl -s "https://simonwillison.net/atom/everything/" | grep -oP '(?<=<title>).*?
 
 | Name | Format | Frequency | Description |
 |------|--------|-----------|-------------|
-| **[GitHub Trending](https://github.com/trending)** | Web (HTML) | Daily | Top trending repositories by language and time range. No official RSS — use the [GitHub Trending API](https://api.gitterapp.com/repositories) or scrape. |
+| **[GitHub Trending](https://github.com/trending)** | Web (HTML) | Daily | Top trending repositories by language and time range. No official RSS or stable third-party JSON API — scrape the page or mirror via a self-hosted proxy. Hosted third-party APIs in this space (e.g. `api.gitterapp.com`) have a history of going offline without notice; don't depend on them. |
 | **[GitHub Events API](https://docs.github.com/en/rest/activity/events)** | JSON API | Real-time | Public events stream (pushes, stars, forks, issues). Free tier: 60 req/hr unauthenticated, 5000/hr with token. |
 | **[GitLab Explore](https://gitlab.com/explore)** | Web (HTML) | Continuous | Trending and most-starred public GitLab projects. |
 
@@ -105,8 +107,8 @@ curl -s "https://simonwillison.net/atom/everything/" | grep -oP '(?<=<title>).*?
 # GitHub — public events for a repo
 curl -s "https://api.github.com/repos/anthropics/claude-code/events" | jq '.[0] | {type, created_at, actor: .actor.login}'
 
-# GitHub Trending — unofficial API
-curl -s "https://api.gitterapp.com/repositories?since=daily" | jq '.[0] | {name: .fullName, stars: .stars, description}'
+# GitHub Trending — scrape (no first-party or reliable third-party JSON API)
+curl -sL "https://github.com/trending" | htmlq '.Box-row h2 a' --attribute href | head -5
 ```
 
 ## First-Party AI Labs
