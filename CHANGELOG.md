@@ -7,6 +7,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- `.claude/skills/finding-unknowns/SKILL.md` — Claude Code skill operationalizing the four categories of unknowns (known knowns, known unknowns, unknown knowns, unknown unknowns) from Anthropic's "A Field Guide to Claude Fable" talk into interview, brainstorm/prototype, blindspot-pass, implementation-notes, and pitch/quiz workflows.
 - `CHANGELOG.md` (this file).
 - "Last verified" banner and re-verification cadence (90 days) in `README.md`.
 
