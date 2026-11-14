@@ -33,6 +33,7 @@ Every entry has been verified to return a parseable feed. No paywalled APIs. No 
 | Name | Format | Frequency | Description |
 |------|--------|-----------|-------------|
 | **[deeptrend](https://github.com/chrbailey/deeptrend)** | JSON Feed, RSS, llms.txt | Every 6 hours | Structured AI trend intelligence synthesized from 14+ sources via LLM Counsel. Publishes JSON Feed, RSS, hot.json, and llms.txt. [Live feed](https://chrbailey.github.io/deeptrend/feed.json) &#124; [Hot topics](https://chrbailey.github.io/deeptrend/hot.json) &#124; [RSS](https://chrbailey.github.io/deeptrend/feed.xml) &#124; [llms.txt](https://chrbailey.github.io/deeptrend/llms.txt) |
+| **[AIHOT Daily](https://aihot.news/feed/daily.xml)** | RSS | Daily | Chinese-language AI industry briefings on model releases, products, research, and industry developments, with original-source links. |
 
 ```bash
 # Quick test
