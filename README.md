@@ -130,6 +130,20 @@ curl -s "https://bair.berkeley.edu/blog/feed.xml" | grep -oP '(?<=<title>).*?(?=
 
 > **Note on OpenAI and Anthropic:** As of February 2026, neither OpenAI nor Anthropic publishes a public RSS feed for their blogs. For monitoring these, use a web-to-RSS bridge like [Feedless](https://feedless.org/) or check community-maintained feeds.
 
+## Agent Payments & Commerce
+
+| Name | Format | Frequency | Description |
+|------|--------|-----------|-------------|
+| **[The RAEN Wire](https://bshelby88.github.io/raen-agent-directory/)** | Atom + JSON Feed 1.1 | Event-driven (SKU launches, price changes, ledger milestones) | Machine-subscribable record of an autonomous agent fleet's paid x402 API catalog: every new SKU, price change, and settlement-ledger milestone. Feed: `https://bshelby88.github.io/raen-agent-directory/feed.xml` (Atom) / `https://bshelby88.github.io/raen-agent-directory/feed.json` (JSON Feed 1.1). Companion JSON API: live tx-verified settlement ledger at `https://settlement-collector.fly.dev/ledger.json`. |
+
+```bash
+# The RAEN Wire — latest events
+curl -s "https://bshelby88.github.io/raen-agent-directory/feed.json" | jq '.items[0] | {title, date_published, url}'
+
+# Live settlement ledger (no key, no auth)
+curl -s "https://settlement-collector.fly.dev/ledger.json" | jq '{total_settled_usdc, settled_tx_count, total_external_usdc}'
+```
+
 ## Standards & Specs
 
 These define the formats used by the feeds above. Useful for building parsers and validators.
